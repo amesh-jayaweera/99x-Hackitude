@@ -1,3 +1,4 @@
 node_modules
 main.sqlite
 package-lock.json
+/env

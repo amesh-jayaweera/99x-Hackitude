@@ -99,8 +99,10 @@ async function updateLastAccessed(userId,courseId) {
 }
 
 async function getTopFiveSuggestionsFromGoogleApi(bookTitle) {
+    // get googleApiKey
+    const googleApiKey = "";
     const firstWord = bookTitle.split(' ')[0];
-    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${firstWord}&printType=books&maxResults=5&key=AIzaSyAkFn-uo8LTD-avzmY5mjKxCpTpAqWAnZ8`);
+    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${firstWord}&printType=books&maxResults=5&key=${googleApiKey}`);
     const books =  await response.json();
     const items = books['items'];
     const suggestedBooks = [];
@@ -113,7 +115,8 @@ async function getTopFiveSuggestionsFromGoogleApi(bookTitle) {
 async function getCoursePrice(currencyTo, value) {
     const today = new Date();
     let firstDay = new Date(today.getFullYear(), today.getMonth(), 1).toISOString().slice(0, 10);
-    const apiKey = '2808ef8334e54f08954858b385171dc3';
+    // get from env
+    const apiKey = '';
     const api = `https://openexchangerates.org/api/historical/${firstDay}.json?app_id=${apiKey}`;
     const response = await fetch(api);
     const responseJson =  await response.json();
